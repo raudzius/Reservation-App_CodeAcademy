@@ -10,17 +10,14 @@
   flex-wrap: wrap;
 }
 
+.pl-20 {
+  padding-left: 20px;
+}
+
 .table {
   width: 700px;
   height: 700px;
   background-color: #e3e3e3;
-}
-
-.box {
-  height: 70px;
-  width: 70px;
-  border: 1px solid black;
-  box-sizing: border-box;
 }
 
 .selected {
@@ -32,4 +29,33 @@
   height: 200px;
   margin-left: 10px;
   background-color: #e3e3e3;
+}
+
+.gameMap {
+  height: 800px;
+  width: 800px;
+  background-color: mediumspringgreen;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.box {
+  height: 100px;
+  width: 100px;
+  box-sizing: border-box;
+}
+
+.border {
+  border: 1px solid black;
+}
+
+.playerImg {
+  height: 100px;
+  width: 100px;
+}
+
+.dice {
+  background-image: url('https://ecdn.teacherspayteachers.com/thumbitem/Dice-and-Dominoes-Clipart-Graphics-FREE-1497374706/original-306749-3.jpg');
+  height: 100px;
+  width: 100px;
 }

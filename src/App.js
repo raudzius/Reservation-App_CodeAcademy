@@ -1,42 +1,34 @@
 import './App.css';
-import React, { useEffect, useState } from 'react';
-import Table from './components/Table';
-import Sidebar from './components/Sidebar';
+import React, { useState } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import IndexPage from './pages/IndexPage';
+import GamePage from './pages/GamePage';
+import MainContext from './context/MainContext';
 
-function App() {
-  const [boxes, setBoxes] = useState([]);
-  const [boxSelected, setBoxSelected] = useState(0);
+const gameMap = [
+  1, 2, 3, 4, 5, 6, 7, 8, 28, 0, 0, 0, 0, 0, 0, 9, 27, 0, 0, 0, 0, 0, 0, 10, 26, 0, 0, 0, 0, 0, 0,
+  11, 25, 0, 0, 0, 0, 0, 0, 12, 24, 0, 0, 0, 0, 0, 0, 13, 23, 0, 0, 0, 0, 0, 0, 14, 22, 21, 20, 19,
+  18, 17, 16, 15,
+];
 
-  useEffect(() => {
-    let arr = [];
-    for (let i = 0; i < 100; i++) {
-      arr.push(null);
-    }
+const App = () => {
+  const [playerPosition, setPlayerPosition] = useState(1);
+  const [playerImage, setPlayerImage] = useState('');
 
-    setBoxes(arr);
-  }, []);
-
-  const reserve = (color) => {
-    const updatedBoxes = [...boxes];
-    updatedBoxes[boxSelected] = color;
-    setBoxes(updatedBoxes);
-  };
-  const cancelReservation = () => {
-    const updatedBoxes = [...boxes];
-    updatedBoxes[boxSelected] = null;
-    setBoxes(updatedBoxes);
-  };
+  const contextValue = { gameMap, playerImage, playerPosition, setPlayerImage, setPlayerPosition };
 
   return (
-    <div className="App d-flex">
-      <Table boxes={boxes} setBoxSelected={setBoxSelected} boxSelected={boxSelected} />
-      <Sidebar
-        reserve={reserve}
-        cancelReservation={cancelReservation}
-        reservationStatus={boxes[boxSelected]}
-      />
-    </div>
+    <MainContext.Provider value={contextValue}>
+      <div className="App">
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<IndexPage />} />
+            <Route path="/game" element={<GamePage />} />
+          </Routes>
+        </BrowserRouter>
+      </div>
+    </MainContext.Provider>
   );
-}
+};
 
 export default App;
